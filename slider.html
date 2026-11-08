@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Гнатология — прототип шторки «Проблема / Решение»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+html,body{background:#0f1720}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Manrope,system-ui,sans-serif;color:#fff;min-height:100vh;display:flex;flex-direction:column}
+.top{padding:20px clamp(16px,4vw,48px);display:flex;justify-content:space-between;align-items:center;font-size:14px;color:rgba(255,255,255,.7)}
+.top b{color:#fff;font-size:16px}
+.cmp{position:relative;flex:1;min-height:560px;overflow:hidden;user-select:none;touch-action:pan-y;cursor:ew-resize;--x:50%}
+.side{position:absolute;inset:0;display:flex;align-items:center;padding:0 clamp(20px,6vw,96px)}
+.problem{background:radial-gradient(900px 600px at 20% 60%,#5a1f24 0%,#2a1215 55%,#160b0c 100%)}
+.solution{background:radial-gradient(900px 600px at 80% 50%,#1d6b63 0%,#123a37 55%,#0b1f1d 100%);clip-path:inset(0 0 0 var(--x));justify-content:flex-end;text-align:right}
+.txt{max-width:440px}
+.lbl{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;padding:6px 12px;border-radius:999px;margin-bottom:18px}
+.problem .lbl{background:rgba(255,99,99,.18);color:#ff9b9b}
+.solution .lbl{background:rgba(102,230,207,.18);color:#8ff0dc}
+h1,h2{font-size:clamp(30px,4.4vw,60px);line-height:1.05;letter-spacing:-.03em;font-weight:800}
+ul{list-style:none;margin-top:22px;display:grid;gap:10px;font-size:clamp(15px,1.2vw,18px);color:rgba(255,255,255,.85)}
+.problem li::before{content:'✕';color:#ff8080;margin-right:10px;font-weight:800}
+.solution li::after{content:'✓';color:#66e6cf;margin-left:10px;font-weight:800}
+.jaw{position:absolute;bottom:0;height:72%;opacity:.9;pointer-events:none}
+.problem .jaw{right:8%}
+.solution .jaw{left:8%}
+.handle{position:absolute;top:0;bottom:0;left:var(--x);width:2px;background:#fff;transform:translateX(-1px);z-index:3}
+.knob{position:absolute;top:50%;left:50%;width:56px;height:56px;border-radius:50%;background:#fff;color:#0f1720;transform:translate(-50%,-50%);display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.4);border:0;cursor:ew-resize}
+.knob:focus-visible{outline:3px solid #66e6cf;outline-offset:4px}
+.hint{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);font-size:13px;color:rgba(255,255,255,.7);background:rgba(0,0,0,.35);padding:8px 14px;border-radius:999px;z-index:4;transition:opacity .4s}
+.cmp.used .hint{opacity:0}
+.cta{position:absolute;right:clamp(20px,6vw,96px);bottom:40px;z-index:2}
+.cta a{display:inline-block;background:#66e6cf;color:#0b1f1d;font-weight:800;padding:15px 26px;border-radius:999px;text-decoration:none}
+.note{padding:14px clamp(16px,4vw,48px);font-size:13px;color:rgba(255,255,255,.55)}
+@media (max-width:760px){
+  .cmp{min-height:720px}
+  .side{padding:32px 20px}
+  .problem{align-items:flex-start}
+  .solution{align-items:flex-end;padding-bottom:64px}
+  .jaw,.cta{display:none}
+  h1,h2{font-size:30px}
+  ul{margin-top:14px;font-size:15px}
+  .hint{bottom:auto;top:50%;transform:translate(-50%,40px);white-space:nowrap}
+}
+@media (prefers-reduced-motion:no-preference){.cmp.intro{transition:--x .9s}}
+</style>
+</head>
+<body>
+<div class="top"><b>Прототип для страницы «Гнатология»</b><span>Потяните шторку ↔</span></div>
+
+<section class="cmp" id="cmp" aria-label="Сравнение: проблема и решение">
+  <div class="side problem">
+    <div class="txt">
+      <span class="lbl">Проблема</span>
+      <h1>Щёлкает челюсть и болит голова по утрам?</h1>
+      <ul><li>Хруст и щелчки при открывании рта</li><li>Скрежет зубами во сне</li><li>Боль в висках, шее, ушах</li><li>Стираются зубы и скалываются пломбы</li></ul>
+    </div>
+    <svg class="jaw" viewBox="0 0 300 400" fill="none" aria-hidden="true"><path d="M60 40c60-30 150-30 190 30 30 45 25 110 5 160-15 40-25 80-60 120-25 28-80 30-110 10-35-24-40-70-50-110C25 200 0 130 20 90c10-22 22-38 40-50z" stroke="#ff8080" stroke-width="3" opacity=".5"/><path d="M150 210c20 10 45 12 70 4" stroke="#ff8080" stroke-width="4" stroke-linecap="round"/><g stroke="#ff8080" stroke-width="3" stroke-linecap="round"><path d="M235 120l25-10M240 140l28 0M235 160l25 10"/></g></svg>
+  </div>
+
+  <div class="side solution" aria-hidden="false">
+    <svg class="jaw" viewBox="0 0 300 400" fill="none" aria-hidden="true"><path d="M240 40c-60-30-150-30-190 30-30 45-25 110-5 160 15 40 25 80 60 120 25 28 80 30 110 10 35-24 40-70 50-110 10-50 35-120 15-160-10-22-22-38-40-50z" stroke="#66e6cf" stroke-width="3" opacity=".5"/><path d="M150 214c-20 6-45 6-70 0" stroke="#66e6cf" stroke-width="4" stroke-linecap="round"/></svg>
+    <div class="txt">
+      <span class="lbl">Решение</span>
+      <h2>Расслабленные мышцы и спокойный сон</h2>
+      <ul><li>Диагностика на артикуляторе и КТ</li><li>Индивидуальная сплинт-капа</li><li>Миорелаксация и контроль прикуса</li><li>Первичный приём — 2 000 ₽</li></ul>
+    </div>
+  </div>
+
+  <div class="handle"><button class="knob" id="knob" aria-label="Положение шторки" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg></button></div>
+  <div class="cta"><a href="#">Записаться на приём</a></div>
+  <div class="hint">← Потяните, чтобы увидеть решение →</div>
+</section>
+<p class="note">Демонстрационный прототип интерактива для отклика на Kwork. Иллюстрации условные, на реальной странице будут фотографии и фирменный стиль клиники.</p>
+
+<script>
+(()=>{
+  const el=document.getElementById('cmp'),knob=document.getElementById('knob');
+  let drag=false;
+  const set=p=>{p=Math.max(0,Math.min(100,p));el.style.setProperty('--x',p+'%');knob.setAttribute('aria-valuenow',Math.round(p))};
+  const fromEvent=e=>{const r=el.getBoundingClientRect();set((e.clientX-r.left)/r.width*100)};
+  el.addEventListener('pointerdown',e=>{drag=true;el.classList.add('used');el.setPointerCapture(e.pointerId);fromEvent(e)});
+  el.addEventListener('pointermove',e=>{if(drag)fromEvent(e)});
+  el.addEventListener('pointerup',()=>drag=false);
+  el.addEventListener('pointercancel',()=>drag=false);
+  knob.addEventListener('keydown',e=>{const v=+knob.getAttribute('aria-valuenow');if(e.key==='ArrowLeft'){set(v-5);el.classList.add('used')}if(e.key==='ArrowRight'){set(v+5);el.classList.add('used')}});
+  // мягкая подсказка: шторка сама слегка «дышит» один раз
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+    let t0=null;const anim=t=>{if(el.classList.contains('used'))return;t0??=t;const k=(t-t0)/1600;if(k>1){set(50);return}set(50+Math.sin(k*Math.PI*2)*14);requestAnimationFrame(anim)};
+    setTimeout(()=>requestAnimationFrame(anim),700);
+  }
+})();
+</script>
+</body>
+</html>
